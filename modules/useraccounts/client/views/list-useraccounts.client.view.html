@@ -1,0 +1,29 @@
+<section>
+  <div class="page-header">
+    <h1>
+      Userclients
+      <div class="pull-right">
+        <a class="btn btn-primary pull-right" data-ui-sref="useraccounts.create">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+      </div>
+    </h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="useraccount in vm.useraccounts"
+       ui-sref="useraccounts.view({ useraccountId: useraccount._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="useraccount.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="useraccount.user" ng-bind="useraccount.user.displayName"></span>
+        <span ng-if="!useraccount.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="useraccount.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.useraccounts.$resolved && !vm.useraccounts.length">
+    No Useraccounts yet, why don't you <a ui-sref="useraccounts.create">create one</a>?
+  </div>
+</section>

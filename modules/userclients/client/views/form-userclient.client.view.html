@@ -1,0 +1,82 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.userclient._id ? 'Edit Userclient' : 'New Userclient'}}</h1>
+  </div>
+  <div class="col-md-12">
+
+    <form name="vm.form.userclientForm" class="form-horizontal" ng-submit="vm.save(vm.form.userclientForm.$valid)" novalidate>
+      <div class="row col-md-6">
+        <section class="row">
+          <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-4">
+              <fieldset>
+                <div class="form-group text-center">
+                  <img ngf-src="vm.fileSelected ? picFile : vm.noSelectedImgUrl" alt="{{vm.userclient.name}}" class="img-thumbnail user-profile-picture" ngf-drop>
+                </div>
+                <div ng-show="vm.loading" class="form-group text-center">
+                  <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+                </div>
+                <div ng-show="!vm.fileSelected" class="text-center form-group">
+                  <button class="btn btn-default btn-file" ngf-select="(vm.fileSelected = true) && (vm.loading = false)" ng-model="picFile" accept="image/*" ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">Select Picture</button>
+                </div>
+                <div ng-show="vm.fileSelected" class="text-center form-group">
+                  <button class="btn btn-default" ng-click="vm.fileSelected = false">Cancel</button>
+                </div>
+                <div ng-show="vm.fileSelected" class="progress text-center">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.progress}}%" ng-bind="vm.progress + '%'">
+                    <span class="sr-only">{{vm.progress}}% Complete</span>
+                  </div>
+                </div>
+              </fieldset>
+          </div>
+        </section>
+      </div>
+      <div class="row col-md-6">
+        <fieldset>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="name">Name</label>
+            <input name="name" type="text" ng-model="vm.userclient.name" id="name" class="form-control" placeholder="Name" required>
+            <div ng-messages="vm.form.userclientForm.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Userclient name is required.</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="name">Email</label>
+            <input name="email" type="text" ng-model="vm.userclient.email" id="name" class="form-control" placeholder="Email" required>
+            <div ng-messages="vm.form.userclientForm.email.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Userclient email is required.</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="country">Country</label>
+            <input name="country" type="text" ng-model="vm.userclient.country" id="name" class="form-control" placeholder="Country" required>
+            <div ng-messages="vm.form.userclientForm.country.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Userclient Country is required.</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="devproject">Developed Project</label>
+            <input name="devproject" type="text" ng-model="vm.userclient.devproject" id="name" class="form-control" placeholder="Developed Project">
+            <div ng-messages="vm.form.userclientForm.devproject.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Userclient Developed Project is required.</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="name">Comment</label>
+            <textarea name="comment" data-ng-model="vm.userclient.comment" id="comment" class="form-control" cols="30" rows="10" placeholder="Comment"></textarea>
+            <div ng-messages="vm.form.userclientForm.comment.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Userclient Comment is required.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">{{vm.userclient._id ? 'Update' : 'Create'}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </div>
+
+    </form>
+  </div>
+</section>

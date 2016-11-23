@@ -1,0 +1,34 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.useraccount._id ? 'Edit Useraccount' : 'New Useraccount'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.useraccountForm" class="form-horizontal" ng-submit="vm.save(vm.form.useraccountForm.$valid)"
+          novalidate>
+      <fieldset>
+        <div class="form-group" show-errors ng-repeat="item in vm.forminput">
+          <label class="control-label" for="{{item.variable}}">{{ item.title}}</label>
+          <input name={{item.variable}} type="text" ng-model="vm.useraccount[item.variable]" id={{item.variable}}
+                 class="form-control" placeholder="{{item.title}}" ng-required="item.validate">
+          <div ng-messages="vm.form.useraccountForm[item.variable].$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Useraccount {{item.title}} is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="overview">Overview</label>
+          <textarea name="overview" ng-model="vm.useraccount.overview" id="overview" class="form-control" cols="30"
+                    rows="10" placeholder="Overview" required></textarea>
+          <div ng-messages="vm.form.useraccountForm.overview.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Useraccount Overview is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.useraccount._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

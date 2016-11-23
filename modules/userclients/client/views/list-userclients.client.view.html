@@ -1,0 +1,40 @@
+<section>
+  <div class="page-header">
+    <h1>
+      Userclients
+      <div class="pull-right">
+        <a class="btn btn-primary pull-right" data-ui-sref="userclients.create">
+          <i class="glyphicon glyphicon-plus"></i>
+        </a>
+      </div>
+    </h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="userclient in vm.userclients"
+       ui-sref="userclients.view({ userclientId: userclient._id })"
+       class="list-group-item">
+      <div class="row">
+      <div class="row col-md-3 text-center">
+        <img ngf-src="userclient.clientImageURL" alt="{{vm.userclient.name}}" class="img-thumbnail user-profile-picture"
+             ngf-drop>
+      </div>
+      <div class="row col-md-9">
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="userclient.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="userclient.user" ng-bind="userclient.user.displayName"></span>
+          <span ng-if="!userclient.user">Deleted User</span>
+        </small>
+        <h1 ng-bind="userclient.name">
+        </h1>
+        <h4 ng-bind="userclient.email">
+        </h4>
+
+      </div></div>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.userclients.$resolved && !vm.userclients.length">
+    No Userclients yet, why don't you <a ui-sref="userclients.create">create one</a>?
+  </div>
+</section>

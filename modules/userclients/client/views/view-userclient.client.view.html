@@ -1,0 +1,63 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.userclient.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.userclient.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="userclients.edit({ userclientId: vm.userclient._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.userclient.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.userclient.user"
+            ng-bind="vm.userclient.user.displayName"></span>
+      <span ng-if="!vm.userclient.user">Deleted User</span>
+    </em>
+  </small>
+  <div class="col-md-12">
+
+    <form name="vm.form.userclientForm" class="form-horizontal">
+      <div class="row col-md-6">
+        <section class="row">
+          <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-4">
+            <fieldset>
+              <div class="form-group text-center">
+                <img ngf-src="vm.fileSelected ? picFile : vm.noSelectedImgUrl" alt="{{vm.userclient.name}}" class="img-thumbnail user-profile-picture" ngf-drop>
+              </div>
+            </fieldset>
+          </div>
+        </section>
+      </div>
+      <div class="row col-md-6">
+        <fieldset>
+          <div class="form-group">
+            <label class="control-label" for="name">Name</label>
+            <h4  ng-bind="vm.userclient.name" ></h4>
+          </div>
+          <div class="form-group" >
+            <label class="control-label" for="email">Email</label>
+            <h4  ng-bind="vm.userclient.email" ></h4>
+          </div>
+          <div class="form-group" >
+            <label class="control-label" for="country">Country</label>
+            <h4  ng-bind="vm.userclient.country" ></h4>
+          </div>
+          <div class="form-group" >
+            <label class="control-label" for="devproject">Developed Project</label>
+            <h4  ng-bind="vm.userclient.devproject" ></h4>
+          </div>
+          <div class="form-group" >
+            <label class="control-label" for="comment">Comment</label>
+            <h4  ng-bind="vm.userclient.comment" ></h4>
+          </div>
+        </fieldset>
+      </div>
+</section>
